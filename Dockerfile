@@ -1,10 +1,10 @@
-# Monolith: Vite frontend + Express API. Build from repo root 
+# Monolith: Vite client + Express API. Build from repo root 
 
 # --- Stage 1: build the SPA (Vite) ---
 # Produces static HTML/JS/CSS under dist/ — copied into the final image as ./public.
-FROM node:22-bookworm-slim AS frontend-build
-WORKDIR /app/frontend
-COPY frontend/ ./
+FROM node:22-bookworm-slim AS client-build
+WORKDIR /app/client
+COPY client/ ./
 # Empty = browser calls /api on the same host as the page (same domain as Express).
 ENV VITE_API_URL=
 # Public Clerk key (safe to pass as build-arg; it is embedded in client JS anyway)
@@ -15,9 +15,9 @@ RUN npm install --no-audit --no-fund \
 
   # --- Stage 2: compile the API (TypeScript → JavaScript) ---
 # Produces dist/ with index.js and the rest of the server bundle.
-FROM node:22-bookworm-slim AS backend-build
+FROM node:22-bookworm-slim AS api-build
 WORKDIR /app
-COPY backend/ ./
+COPY api/ ./
 RUN npm install --no-audit --no-fund \
   && npm run build
 
@@ -27,11 +27,11 @@ FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
-COPY backend/package.json backend/package-lock.json ./
+COPY api/package.json api/package-lock.json ./
 RUN npm install --omit=dev --no-audit --no-fund && npm cache clean --force
 
-COPY --from=backend-build /app/dist ./dist
-COPY --from=frontend-build /app/frontend/dist ./public
+COPY --from=api-build /app/dist ./dist
+COPY --from=client-build /app/client/dist ./public
 
 EXPOSE 3001
 USER node
