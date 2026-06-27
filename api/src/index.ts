@@ -4,6 +4,7 @@ import cors from "cors";
 import { clerkWebhookHandler } from "./webhooks/clerk.js";
 import { clerkMiddleware } from "@clerk/express";
 import { getEnv } from "./lib/env.js";
+import keepAliveCron from "./lib/cron.js";
 
 import fs from "node:fs";
 import path from "node:path";
@@ -20,6 +21,10 @@ app.post("/webhooks/clerk", rawJson, (req, res) => {
 app.use(express.json());
 app.use(cors());
 app.use(clerkMiddleware());
+
+app.get("/health", (_req, res) => {
+  res.json({ ok: true });
+});
 
 const publicDir = path.join(process.cwd(), "public");
 if (fs.existsSync(publicDir)) {
@@ -43,4 +48,5 @@ if (fs.existsSync(publicDir)) {
 const PORT = env.PORT;
 app.listen(PORT, () => {
   console.log(`listening on port : ${PORT}`);
+  keepAliveCron.start();
 });
