@@ -48,5 +48,5 @@ if (fs.existsSync(publicDir)) {
 const PORT = env.PORT;
 app.listen(PORT, () => {
   console.log(`listening on port : ${PORT}`);
-  keepAliveCron.start();
+  // keepAliveCron.start();
 });
