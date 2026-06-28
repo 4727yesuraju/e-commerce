@@ -22,24 +22,24 @@ const tracePropagationTargets =
       ? [window.location.origin]
       : [];
 
-Sentry.init({
-  dsn: import.meta.env.VITE_SENTRY_DSN,
-  environment: import.meta.env.MODE,
-  sendDefaultPii: true,
-  integrations: [
-    Sentry.browserTracingIntegration(),
-    Sentry.replayIntegration({
-      maskAllText: false,
-      maskAllInputs: false,
-      blockAllMedia: false,
-    }),
-  ],
-  tracesSampleRate: 1.0,
-  tracePropagationTargets: tracePropagationTargets,
-  replaysSessionSampleRate: 1.0,
-  replaysOnErrorSampleRate: 1.0,
-  enableLogs: true,
-});
+// Sentry.init({
+//   dsn: import.meta.env.VITE_SENTRY_DSN,
+//   environment: import.meta.env.MODE || "development",
+//   sendDefaultPii: true,
+//   integrations: [
+//     Sentry.browserTracingIntegration(),
+//     Sentry.replayIntegration({
+//       maskAllText: false,
+//       maskAllInputs: false,
+//       blockAllMedia: false,
+//     }),
+//   ],
+//   tracesSampleRate: 1.0,
+//   tracePropagationTargets: tracePropagationTargets,
+//   replaysSessionSampleRate: 1.0,
+//   replaysOnErrorSampleRate: 1.0,
+//   enableLogs: true,
+// });
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
