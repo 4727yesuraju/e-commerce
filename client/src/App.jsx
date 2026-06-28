@@ -18,6 +18,7 @@ import OrderDetailPage from "./pages/OrderDetailPage";
 import OrderSummaryPage from "./pages/OrderSummaryPage";
 import OrderChatPage from "./pages/OrderChatPage.jsx";
 import OrderVideoPage from "./pages/OrderVideoPage";
+import AdminProductsPage from "./pages/AdminProductsPage";
 
 function App() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -39,6 +40,12 @@ function App() {
           path="/orders/:id/call"
           element={
             isSignedIn ? <OrderVideoPage /> : <Navigate to={"/"} replace />
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            isSignedIn ? <AdminProductsPage /> : <Navigate to="/" replace />
           }
         />
 
