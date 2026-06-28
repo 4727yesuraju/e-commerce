@@ -80,7 +80,7 @@ function OrderChatPage() {
         </div>
       </div>
 
-      <div className="stream-panel h-[560px] overflow-hidden rounded-box border border-neutral-700 bg-neutral-950 [&_.str-chat\_\_main-panel]:min-h-0">
+      <div className="stream-panel h-140 overflow-hidden rounded-box border border-neutral-700 bg-neutral-950 [&_.str-chat\_\_main-panel]:min-h-0">
         <Chat client={client} theme="messaging str-chat__theme-dark">
           <Channel channel={channel}>
             <Window>
