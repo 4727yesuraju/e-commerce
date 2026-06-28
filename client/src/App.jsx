@@ -14,6 +14,9 @@ import OrdersPage from "./pages/OrderPage.jsx";
 import CheckoutReturnPage from "./pages/CheckoutReturnPage.jsx";
 import ProductDetailPage from "./pages/ProductDetailsPage.jsx";
 import { SentryDemoPage } from "./pages/SentryDemoPage.jsx";
+import OrderDetailPage from "./pages/OrderDetailPage";
+import OrderSummaryPage from "./pages/OrderSummaryPage";
+import OrderChatPage from "./pages/OrderChatPage.jsx";
 
 function App() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -30,6 +33,11 @@ function App() {
         />
         <Route path="/checkout/return" element={<CheckoutReturnPage />} />
         <Route path="/demo-sentry" element={<SentryDemoPage />} />
+        {/* NESTED ROUTES */}
+        <Route path="/orders/:id" element={<OrderDetailPage />}>
+          <Route index element={<OrderSummaryPage />} />
+          <Route path="chat" element={<OrderChatPage />} />
+        </Route>
       </Routes>
     </Layout>
   );
