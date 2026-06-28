@@ -13,6 +13,7 @@ import CartPage from "./pages/CartPage.jsx";
 import OrdersPage from "./pages/OrderPage.jsx";
 import CheckoutReturnPage from "./pages/CheckoutReturnPage.jsx";
 import ProductDetailPage from "./pages/ProductDetailsPage.jsx";
+import { SentryDemoPage } from "./pages/SentryDemoPage.jsx";
 
 function App() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -28,6 +29,7 @@ function App() {
           element={isSignedIn ? <OrdersPage /> : <Navigate to={"/"} replace />}
         />
         <Route path="/checkout/return" element={<CheckoutReturnPage />} />
+        <Route path="/demo-sentry" element={<SentryDemoPage />} />
       </Routes>
     </Layout>
   );
