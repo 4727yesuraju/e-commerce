@@ -6,7 +6,7 @@ import {
   IK_PRESETS,
   imageKitOptimizedUrl,
   imageKitWatermarkedUrl,
-} from "../lib/imagekitUrl";
+} from "../lib/imageKitUrl.js";
 import { useCart } from "../store/cart";
 import {
   ArrowLeftIcon,

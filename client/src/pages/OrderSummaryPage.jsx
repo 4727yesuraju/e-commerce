@@ -1,6 +1,6 @@
 import { ListOrderedIcon, PackageIcon } from "lucide-react";
 import { Link, useOutletContext } from "react-router";
-import { IK_PRESETS, imageKitOptimizedUrl } from "../lib/imagekitUrl";
+import { IK_PRESETS, imageKitOptimizedUrl } from "../lib/imageKitUrl.js";
 import { formatPrice } from "../utils/format";
 
 function OrderSummaryPage() {
