@@ -11,6 +11,7 @@ import { Route, Routes, Navigate } from "react-router";
 import HomePage from "./pages/HomePage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import OrdersPage from "./pages/OrderPage.jsx";
+import CheckoutReturnPage from "./pages/CheckoutReturnPage.jsx";
 
 function App() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -24,6 +25,7 @@ function App() {
           path="/orders"
           element={isSignedIn ? <OrdersPage /> : <Navigate to={"/"} replace />}
         />
+        <Route path="/checkout/return" element={<CheckoutReturnPage />} />
       </Routes>
     </Layout>
   );
